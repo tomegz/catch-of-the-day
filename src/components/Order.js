@@ -9,14 +9,15 @@ class Order extends React.Component {
 	renderOrder(key) {
         const fish = this.props.fishes[key];
         const count = this.props.order[key];
-        
+        const button = <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>;
         if(!fish || fish.status === "unavailable") {
-        	return <li key={key}>Sorry, {fish ? fish.name : "the Fish"} is no longer available</li>;
+        	return <li key={key}>Sorry, {fish ? fish.name : "the Fish"} is no longer available{button}</li>;
         }
         return (
         	<li key={key}>
         	    <span>{count}lbs {fish.name}</span>
         	    <span className="price">{formatPrice( count * fish.price )}</span>
+                {button}
         	</li>
         );
 	}
